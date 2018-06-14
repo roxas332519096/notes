@@ -1,0 +1,51 @@
+SS
+
+引入
+内联
+<p style="color:red;"></p>
+style标签
+<style>
+p {
+  color:red;
+}
+</style>
+外部文件
+<link rel="stylesheet" href="xxx.css">
+再外联
+@import url （./b/xxx/css）
+
+清除float的BUG的伪类，写到浮动元素的父元素上
+.clearfix::after{
+ content:"";
+ display:block;
+ clear:both
+}
+
+默认字大小是16px
+不知道属性取值1.搜索MDN 2.在控制器里试
+
+字体颜色由操作系统决定，不一定是那个颜色，不同字体相同颜色可能会展示不同颜色
+
+a:hover
+a{display:block;}
+
+a{color:inherit}
+
+span与span假如换行 之间会有一个空格
+
+wall haven 背景天堂
+
+一个元素的高度是尤其内部文档流元素的高度总和决定
+
+文档流：文档内元素的流动方向，内联元素从左往右，一个元素假如是一个英文单词不会换行，使用word-break:break-all（中文）break-work（英文）解决
+块级元素，从上往下流
+
+内联元素：
+
+文字居中是基线对齐
+文字大小：顶线到底线的大小
+span高度有line-height决定，不写的话不同字体高度不同
+行间距+字体大小=line-height
+
+块级元素：
+由内部高度决定

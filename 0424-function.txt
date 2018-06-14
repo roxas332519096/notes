@@ -1,0 +1,127 @@
+声明：
+1 function name(input1,input2){ }
+
+2 var name = function (input1,input2){}
+
+3 var name2 = function name1(input1,input2){}
+//外部访问不到name1，console.log(name1)会报错，找不到name1
+
+4 window.Function对象
+new Function('x','y','return x+y')
+例子：
+f= new Function('x','y','return x +' +n + '+y');n=1
+f(1,2)=4
+
+5 sum = (x,y) => {return x+y} //箭头函数,必须是匿名函数
+  sum = (x,y) => x+y //当return只有一句话,可以省略{return },但不能返回一个对象
+  sum = n => n*n //假如参数只有一个,可以省略括号
+
+--------------------------
+name属性:
+
+function f(){} 
+f.name //f
+
+var f2 = function(){}
+f2.name //f2
+
+var f3 = function f4(){}
+f3.name //f4
+
+f5 = new Function('x','y','return x+y')
+f5.name //anonymous 意思为匿名的
+
+----------------------------
+调用call 
+
+f与f.call()区别:
+
+f //对象
+f.call() //执行f中的函数体
+
+eval() //执行传入的代码
+
+糖        硬核
+f(1,2) == f.call(undefined,1,2)
+
+------------------------------
+this 与 arguments
+
+f.call(undefined,1,2)
+
+undefined -> this //call的第一个参数可以用this得到
+1,2 ->arguments //call的后面的参数可以用arguments得到
+
+this:
+普通模式下假如this是undefined,浏览器会自动将this变成window
+严格模式下this是什么就是什么
+
+argument:伪数组
+
+-------------------------
+call stack 调用栈
+
+先进先出
+
+
+递归
+
+压栈超过次数,会栈溢出stack overflow//可以搜索stack overflow网站
+
+--------------------------
+作用域
+
+变量提升,先找声明,赋值不会提升
+
+方法:看到代码就开始答题必错,应该声明提升
+
+题目:
+
+var a = 1
+function f1(){
+    alert(a) // 是多少
+    var a = 2
+}
+f1.call()
+
+////////////////
+
+var a = 1
+function f1(){
+    var a = 2
+    f2.call()
+}
+function f2(){
+    console.log(a) // 是多少
+}
+f1.call()
+
+///////////////
+
+var liTags = document.querySelectorAll('li')
+for(var i = 0; i<liTags.length; i++){
+    liTags[i].onclick = function(){
+        console.log(i) // 点击第3个 li 时，打印 2 还是打印 6？
+    }
+}
+
+///////////////////
+
+闭包:如果一个函数使用它范围外的变量,那么(这个函数+这个变量)就叫闭包
+
+//////////////////
+
+全局变量可耻,不能用
+1.最好不用全局变量
+2.为了防止覆盖全局变量,所以要用局部变量
+3.使用局部变量,声明一个函数,然后立即调用该函数:
+(function(){
+var parent = document.querySelector('parent');
+console.log(parent);
+}.call())
+4.直接声明匿名函数,立即调用浏览器会报错,可以用"+fn","-fn","!fn","~fn","(fn).call()","(fn.call())"
+
+ES6:
+{var parent ='xxx';console.log(parent)},变量声明提升,var parent{parent = 'xxx'},作用域还是全局,所以错!
+
+{let parent = 'xxx';console.log(parent)},let逃不出{},作用域在{}中

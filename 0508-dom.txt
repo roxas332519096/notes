@@ -1,0 +1,237 @@
+DOM document object model
+
+Ndoe
+Document <HTML>标签的父元素,但根元素是HTML
+Elment 
+Text #注意看起来是文本,其实是一个对象
+Comment 
+
+页面中的节点通过,构造函数,变成对象
+
+Node接口属性
+
+childNodes,
+
+
+如果一个节点有父节点，那么该节点就继承了ChildNode接口。
+
+可以用以下方法
+
+1 .remove()
+2 .before()
+3 .after()
+4 .replaceWith()
+
+parentNode,
+
+如果当前节点是父节点，就会继承ParentNode接口。由于只有元素节点（element）、文档节点（document）和文档片段节点（documentFragment）拥有子节点，因此只有这三类节点会继承ParentNode接口。
+
+可以用以下方法
+
+1 .children
+2 .firstElementChild
+3 .lastElementChild
+4 .childElementCount
+5 .append()
+6 .prepend() //功能与5一样
+
+firstChild,lastChild,
+
+innerText,outerText,
+
+textContent
+
+与innerText区别:
+1. textContent获取所有元素内容包括script和style;
+2. innerText检查css,不会返回隐藏元素的文本display:none,却性能低;
+
+nextSibling,previousSibling,(这个两个可能会获取到文本节点)
+
+nodeName(获取的都是大写的,只有svg是小写),
+
+nodeType //1为标签,3为文本 document.nodeType === Node.DOCUMENT_NODE
+
+确定节点类型可以使用nodeType属性
+
+var node = document.documentElement.firstChild;
+if (node.nodeType !== Node.ELEMENT_NODE) {
+  console.log('该节点是元素节点');
+}
+
+nodeValue, //只有文本节点或注释才能返回值,其余为null
+
+ownerDocument, //获得根对象
+
+parentElement, //获得父元素节点,假如父节点不是元素则为null
+
+
+NodeList 与 HTMLCollection 
+
+返回伪数组,不能push和pop
+
+
+
+HTMLCollection与NodeList区别:
+
+
+
+1 .HTMLCollection实例对象的成员只能是Element节点，NodeList实例对象的成员可以包含其他节点。 
+
+2 .HTMLCollection实例对象都是动态集合,NodeList实例对象可能是动态集合，也可能是静态集合,目前,只有Node.childNodes是一个动态集合,其他NodeList是静态集合时反映在集合中。
+
+3 .HTMLCollection实例对象可以用id属性或name属性引用节点元素，NodeList只能使用数字索引引用。 
+
+--------------------------
+Node接口的方法:
+
+appendChild() //创建子节点
+
+insertBefore(节点1,参考节点) //将节点1插入到参考节点之前,假如要将节点1插入到参考节点之后,要使用 insertBefore(节点1,参考节点.nextSibling),注意参考节点不能省略
+
+cloneChild() //复制节点
+
+但是会丧失监听属性,即addEventListener方法和on-属性
+
+浅拷贝 cloneChild(false) 默认就是false
+只拷贝节点,不拷贝子节点
+
+深拷贝 cloneChild(true)
+不仅拷贝节点,也拷贝子节点
+
+removeChild() //移除节点,不在页面里,还在内存里,注意调用的是父节点
+
+replaceChild() //替换节点,之前的节点在内存里
+
+contains() //一个节点是否是参考节点的子节点或其本身
+
+hasChildNodes() //是否有子节点,返回布尔值
+
+isEqualNode() //是否相等节点,看起来一样
+
+isSameNode() //是否相同节点,是否同一个
+
+var p1 = document.createElement('p');
+var p2 = document.createElement('p');
+
+p1.isSameNode(p2) // false
+p1.isSameNode(p1) // true
+
+
+normalize() //常规化
+
+var wrapper = document.createElement('div');
+
+wrapper.appendChild(document.createTextNode('Part 1 '));
+wrapper.appendChild(document.createTextNode('Part 2 '));
+
+wrapper.childNodes.length // 2
+wrapper.normalize();
+wrapper.childNodes.length // 1
+
+----------------------------------------
+
+Document接口的属性
+
+body //获取body元素
+
+head //获取head标签
+
+images //获取所有image标签
+
+links //获取所有a标签
+
+title //获取title标签
+
+scripts //获取所有script标签
+
+characterSet //获取字符编码
+
+childElementCount //获取子元素的个数,用数字表示
+
+children //获取子节点
+
+doctype //获取文档类型
+
+documentElement //获取根元素,即<HTML>
+
+domain //获取域名
+
+location //获取Location对象,其中包含有关文档当前位置的信息.
+
+onxxxxxxxxx //一系列的事件监听
+
+origin //源
+
+plugins //是否有flash插件
+
+readyState //是否下载完成
+
+referrer //引荐者,http发出请求时,可以用referrer拒绝别的访问
+
+hidden //获取隐藏标签
+
+scrollingElement //获取正在滚动的元素
+
+styleSheets //获取所有css
+
+visibilityState //获取页面是否被显示
+
+------------------------
+Document接口的方法
+
+open() //打开
+
+close() //关闭,当执行doucment.wrtie时,页面会自动先document.open() -> docment.write -> document.close() 假如close之后写用write,会重新调用open,会覆盖之前write
+
+createDocumentFragment()
+
+createElement() //创建标签
+
+createTextNode() //创建文本节点
+
+createAttribute() //
+
+execCommand() //执行一个命令
+
+exitFullscreen() //退出全屏
+
+getElementById() //获取该id的标签
+
+getElementsByClassName() //获取该class的标签
+
+getElementsByName() //获取该name属性的标签
+
+getElementsByTagName() //获取该标签名的标签
+
+
+querySelectorAll方法返回的是一个静态集合。DOM内部的变化，并不会实时反映在该方法的返回结果之中。 
+
+querySelector() //获取第一个该选择器的标签
+
+querySelectorAll() //获取所有该选择器的标签
+
+两个都返回伪数组,原型链为NodeList,没有Array.prototype,不能push
+
+与childNodes的区别:
+
+相同:都是返回伪数组
+
+区别:
+childNodes 是动态集合。所谓动态集合就是一个活的集合，DOM树删除或新增一个相关节点，都会立刻反映在NodeList接口之中
+
+getSelection() //获取用户选择的文本
+
+hasFocus() //用户是否在当前页面上
+
+write() //写入文本
+writeln() //写入一行文本
+
+------------------------------------------
+
+Element接口的属性
+
+----------------------------------------------
+Element接口的方法
+
+
+

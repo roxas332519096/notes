@@ -1,0 +1,63 @@
+Uncaught SyntaxError:Unexpected token 
+不期待的字符串
+
+
+
+var x = document.createElement()  //创建元素
+y.appenChild(x)  //在y元素里插入子元素x
+z.textContent="xxx"  z元素里面出现字符串xxx
+console.log()    打印
+key = functionName.target.id //取得被点击的按钮的id
+x = prompt('给我一个网址') //用户输入的网址
+hash[key] = x  //hash 变更
+localStorage.setItem（'uuuu',JOSN.stringify(hash）)  //Application可以看
+
+var hash={'q':qq.com}
+
+//取出localInLocalStorage中uuu对应的hash
+
+var hashInLocalStorage = JSON.pares(localStorage.getItem('uuu')|| ‘null’)
+if(hashInLocalStorage){
+   hash = hashInLocalStorage
+}
+
+document.onkeypress = function(xzkjcnxlkcjlk){
+  //console.log("我发现你输入了一个键")
+  //console.log("你按键的时候所有信息是")
+  //console.log(xzkjcnxlkcjlk['key'])
+  key = xzkjcnxlkcjlk['key'] //q w e
+  website = hash[key] //得到所按键的对应网站
+  console.log(website) 
+  //location.href = 'http://'+website
+  window.open('http://'+website, '_blank')
+}   //监听键盘
+111
+
+
+while(index < key.lenght) {
+   var x = document.createElement('div')
+   y.appenChilid(x)
+   z = document.createElement('kbd')
+   z.textContent = ""
+   div.aappenChild(z)
+   index = index+1
+}
+
+wallhaven壁纸天堂
+compressjpg 图片压缩
+sm.ms 上传图片
+
+子元素上下左右居中：
+父元素 main{
+text-algin:center
+display:flex;
+justify-content:center;
+algin-items:cneter;
+
+}
+
+height:100vh;//屏幕高度
+
+favicon.ico//网页图标
+
+div.className = "";//定义div的classname

@@ -1,0 +1,144 @@
+解决一个问题的关键是马上开始着手解决这个问题.
+你要学会在不懂的情况下搞定它.
+
+方老师简历+JS的例子:
+https://github.com/FrankFang/resume-15-5/blob/master/index.html#L218
+
+CSS:
+
+
+div对main水平垂直居中:
+.main{width:200px;height:200px position:relative;}
+.div {postion:absolute;width:10px;height:10px;
+top:0;left:0;bottom:0;right:0;
+margin:0;}
+
+---------------------------------
+
+div里的扩大动画:
+
+-----------------------------------------
+
+@keyframes name{
+0%{width:0px; height:0px;opacity:1;}
+100%{width:100px;height:100px;opacity:0}
+}
+
+div{animation: name 2s linear infintie;}
+第二个延迟
+.div:nth-child(2){animation-delay:1s}
+
+JS:
+
+------------------------------------
+
+API:
+setTimeout(function,时间) //对象在时间后执行function;单位毫秒
+
+setInterval(function,时间) //对象每隔时间执行一次
+
+var id = setInterval(()=>{if(){window.clearInterval(id)}},时间) //在某条件下停止setInterval
+
+.onscroll //用户滑动窗口时触发的一个函数
+
+window.scrollY //窗口距离顶部的高度(窗口最上方距离页面最上方的距离)
+
+div.offsetTop //元素距离顶部的高度
+
+div.style.xxx = 'yyy'//改变div的xxx属性,值为yyy,其中,yyy必须是字符串,要在引号中
+
+//////////////////
+
+快速动:(时间一样路程不一样,所以速度不一样,体验时快时慢)
+
+let n = 20 //一共动20次
+let t = 500/n //多少时间动一次
+let currentTop = window.scrollY //窗口顶部当前高度
+let targetTop = top - 80  //目标高度
+let S = targetTop - currentTop //要滚的距离
+let s = S/n //每次滚的距离
+let i = 0
+let id = setInterval(()=>{
+ if(i===n){
+  window.clearInterval(id)//清除时钟
+  return
+ }
+ i = i + 1
+ window.scrollTo(0,currentTop + s * i)
+},t)
+
+////////////////
+
+缓动:查tweenjs
+用cdnjs引入
+
+//////////////////
+
+Math.abs()  //求绝对值
+
+.onmouseenter //鼠标移动到触发一个函数
+
+.onmouseleave //移开鼠标触发一个函数
+
+document.querySelectorAll() //接受一个css选择器，返回该选择器的所有元素
+
+document.querySelector() //接受一个选择器，获取该选择器的一个元素
+
+
+x.preventDefault() //阻止默认动作
+
+x.currentTagrget //获取元素
+
+a.getAttribute('href') //用户在该标签(a)的该属性(href)所写的原文
+
+a.href  //被浏览器处理过，带http协议
+
+get.BoundingClientRect() //元素距离窗口顶端距离
+
+element.offsettop //元素距离页面顶端的距离
+
+window.scrollTo(x,y) //滚动到x距离，y距离
+
+
+.nodeType //返回一个值，1是节点，3是文字
+.tagName //返回一个元素，返回值是大写字符串（'UL'）
+
+x.parentNode //找到x元素的父元素
+
+x.parentNode.children //找到x所有所有兄弟元素,先找父元素,再找所有子元素
+
+x.children  //获得子元素
+
+x.childNodes //获得子节点(包括文字和标签)
+
+--------------------------------
+
+BUG当给a标签监听时移动到下级菜单会消失，所以要监听a与子菜单的父元素li
+
+由于a与li之间会有一个空格，所以他弟弟元素是空格
+
+利用递归找到a元素的兄弟ul：
+let brohter = a.nextSibling
+while(brother.nodeType ===3){brother = brother.nextSibling}
+
+.tagName 返回是大写
+while(brother.tagName !=='UL'){brother = brother.nextSibling}
+
+-------------------------------------------
+获取一个div标签的所有同级标签(除他自己)
+
+var getSiblings = function (elem) {
+	var siblings = []; //首先建立空数组
+	var sibling = elem.parentNode.firstChild;
+	for (; sibling; sibling = sibling.nextSibling) { 
+        //遍历div父元素的子节点
+		if (sibling.nodeType !== 1 || sibling === elem) continue;
+//当字节点不等于文字或他自身
+		siblings.push(sibling);//将元素添加到数组中
+	}
+	return siblings;
+};
+
+
+
+

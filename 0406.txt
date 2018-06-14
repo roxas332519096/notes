@@ -1,0 +1,30 @@
+尽量不要给heigh设置高度，会有bug
+
+脱离文档流，父元素高低变少
+
+解决宽度问题。再加一个div
+
+fix相对屏幕
+background-postion：center center；
+
+background-size ：cover；
+
+设置最大宽度
+mix-width：
+div居中
+margin 0 auto；
+margin-left/right：auto；
+
+span大小不建议设置宽高，而是使用padding，因为加字的时候会有bug
+
+css画三角形
+
+相对定位
+子元素写absoulute
+父元素写relatvie
+
+css trick
+
+iconfont.cn
+
+svg width height fill（颜色）

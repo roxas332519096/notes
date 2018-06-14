@@ -1,0 +1,125 @@
+number
+string
+bolean
+symbol
+null
+undefined
+object: array function
+
+number
+
+十进制
+
+1
+1.1
+.1
+1e3 //1000
+
+二进制
+0b11 //3 
+
+
+八进制
+
+011 //9
+存在bug
+
+十六进制
+
+0X11 //17
+
+
+string
+
+'Hi' "Hi" '' ""
+空字符串长度0，空格字符串长度是1
+
+转义 '\''表示'
+     \n  回车
+     \t  制表符  上面长度都为1
+     \\  用转义符转义转义符
+
+多行字符串（用s2比较好），都是输出一行
+
+var s = '12345 \
+67890'
+
+var s2 = '12345'+
+'67890'
+
+错误示范：
+var s3 = '12345 \空格空格空格
+67890'
+
+ES6：
+var S4 =`12345
+67890`
+//中间有回车，上面长度为11
+
+null:
+
+undefined:
+
+区别：
+1.变量没有值 undefined
+2.有一个对象object现在不想赋值，推荐给null；(空对象)
+有一个非对象，推荐给undefined，默认就是undefined
+
+////////////////
+object 
+
+key永远都是字符串
+使用:
+person['name']
+person.name
+
+错误：
+var name = 'fuck';
+person[name] ->person['fuck']
+
+键名不加引号，则要按照标识符规则，比如数值开头，空格等。
+
+person.key key要按标识符规则才能使用这个方法
+
+删除name：
+detete person['name'];返回true
+person.name //undefined
+'name' in person //fasle
+
+name值为undefined时：
+person.name = undefined
+'name' in person //true
+
+
+for...in
+
+var person = {name:frank,age:18}
+
+for(var key in person){
+console.log(key)
+}
+//name
+//age
+
+错误
+for(var key in person){
+console.log(person['key'])
+}
+//由于没有键名为'key'的
+所以要用
+console.log(person[key])
+
+打印的时候是随机的
+
+type of:
+
+特殊:type of null //object
+     type of function //function
+其他该类型是什么就是什么
+
+
+
+
+
+
+               

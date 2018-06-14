@@ -1,0 +1,41 @@
+伪类
+所以非空标签都有伪类
+::before第一个
+::after最后一个
+伪类选不中
+div::before{
+  content:"";
+}
+
+ccs3 线性渐变
+ccs3 linear gradient generator
+过渡transiation :时间s
+
+内联元素：左右margin padding没用
+居中内联元素
+父元素加text-algin:center
+
+css shadow generator
+
+box-sizeing:border-box
+
+外面高度固定，里面高度可以写百分比
+
+:nth-child(even) 选中第N个儿子，even偶数 odd奇数，1第一个
+
+
+:伪类
+::伪元素
+
+inline-block的bug，得加vertiacl-aglign top
+inline-block可以使元素收缩，再将父元素添加text-algin：center，可以使其居中
+
+border-box与padding
+
+下载psd：webpage free psd
+
+link href
+script src
+img src
+iframe src
+a href

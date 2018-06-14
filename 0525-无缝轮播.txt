@@ -1,0 +1,52 @@
+DOM level 0: 
+
+onclick = "要执行的代码"  //一旦用户点击,浏览器就eval("要执行的代码")
+
+例: <script>
+       function print(){console.log(''hi)}
+    </script>
+    <button id = X onclick = "print()">
+     或
+     <script>
+        X.onclick = print  //类型为函数对象,对
+        Y.onclick = print() //undefined,错
+      </script>
+
+
+DOM level 1:
+DOM level 2: 
+
+X.addEventListener('click',function(){}) //队列,先进先出,先绑定先触发
+             //与 X.onclick = function(){}区别:
+               这是一个属性,是唯一的,只能绑定一个onclick
+              一次事件监听 X.one('click',fn(){}) //添加后移除事件
+X.removeddEventListener('click',function(){})
+
+祖先元素绑定事件模型:            
+<div id="grand1">
+    爷爷
+    <div id="parent">
+        爸爸
+        <div id="child1"></div>
+        儿子
+    </div>
+</div>
+
+<script>
+    //1 当我点击儿子时,也相当于点击父亲和爷爷
+    //2 当我点击儿子时,也相执行其绑定事件,执行f1 f2 f3
+    grand1.addEventListener('click',function f1(){
+        console.log('爷爷')
+    })
+    parent1.addEventListener('click',function f2(){
+        console.log('父亲')
+    })
+    child1.addEventListener('click',function f3(){
+        console.log('儿子')
+    })
+    //3 X.addEventListener('click',function f1(){},参数),添加参数,默认是false
+    // 假如是false:从小到大(冒泡) f3 f2 f1 ,假如是true:从大到小(捕获) f1 f2 f3
+    //4 X.addEventListener('click',function f1(){},false) //冒泡
+        X.addEventListener('click',function f1(){},ture) //捕获
+    // 假如同一个事件本身存在冒泡捕获,那么按照写的顺序执行
+</script>

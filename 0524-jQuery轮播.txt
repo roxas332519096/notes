@@ -1,0 +1,105 @@
+写代码的原则:
+内容 样式 行为的分离
+HTML CSS JS
+如果不:代码混乱,不要用JS控制样式,图片宽高不算样式.
+
+
+轮播:
+
+苹果风格的轮播
+
+科技感十足的轮播
+
+最厉害的轮播
+///////////////
+
+轮播原理:
+1.滚来滚去
+2.用局部画面骗用户,overflow:hidden;
+
+注意:选择图片的时候,不要同时设置宽高,不要用图片变型
+
+一.初步:
+css:
+display:flex
+transition:
+transform:或margin-left
+
+jquery:
+$().on('事件',function(xxx){$().css({'属性':'值'})}) //xxx具有所需所有信息
+
+二.改jq
+遍历:
+for(...){
+$().on('click',function(x)){
+var index = x.currentTarget.index() //返回兄弟元素的第几个元素
+var p =index * -300
+$('').css({'属性':'值'})
+n = index //当用户点击按钮时把定时器的计数变为用户当前操作的按钮的编号
+allButtons.eq(n % size)
+ .addClass('red')
+ .siblings('.red').removeClass('red')
+}
+}
+}
+
+三.自动播放
+var n = 0;
+var size = allButtons.length
+allButtons.eq(n % size).trigger('click')
+ .addClass('red')
+ .siblings('.red').removeClass('red')
+
+///定时器
+var timerId = setInterval(() => {
+n += 1
+allButtons.eq(n % size).trigger('click')
+ .addClass('red')
+ .siblings('.red').removeClass('red')
+}
+,time)
+
+//鼠标移入清除计时器
+$('.window').on('mouseenter',function(){
+window.clearInterval(timerId)
+})
+
+//鼠标移出重新开始计时器
+$$('.window').on('mouseleave',function(){
+timerId = setInterval(() => {
+n += 1
+allButtons.eq(n % size).trigger('click')
+ .addClass('red')
+ .siblings('.red').removeClass('red')
+}
+,time)
+})
+
+四.封装: 
+
+function activeButton($button){
+ $button..addClass('red')
+ .siblings('.red').removeClass('red')
+}
+
+使用:activeButton(allButtons.eq(n))
+
+function playSlide(index){
+allButtons.eq(index).trigger('click')
+}
+
+使用:playSlide(n % size)
+
+function setTimer(){
+ return setInterval(() =>{
+ n += 1
+ playSlide(n % size)
+}
+)
+}
+
+使用
+var n = 0;
+var size = allButtons.length
+palySlide(n % size)
+var timerId = setTimer()

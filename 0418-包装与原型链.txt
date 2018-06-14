@@ -1,0 +1,102 @@
+全局对象  Glabol（浏览器Window
+
+global.parseInt
+global.parseFolat
+
+window的属性
+ECMASscript规定
+parseInt()
+parseFloat()
+Number()
+
+1 var n = Number('1') //简单1
+2 var n2 = new Number(1) //对象1
+  n1与n2区别内存不同，
+var n1 = 1
+var n2 =new Number(1)
+n1.toString,其实是将n1临时变成n2，取得其toString值之后，再赋值给n1，n2被回收
+n1.xxx = 2 //赋值成功:先将n1临时变成n2，key=xxx，值为2;
+n1.xxx//undefined:由于上面n2是临时对象，赋值结束后临时对象消失，所以是undefined
+
+
+
+
+String()
+var s1 = 'ABC' //字符串
+var s2 = new String('ABC') //对象
+s2.charAT(0) //获取key为0的字母
+s2.charCodeAT(0) //获取key为0的字母的Unicode码
+
+'a'.charCodeAt(0) //97 a的Unicode码是97
+'a'.charCodeAt.toString(16) //64 a的Unicode码的16进制是64
+'   a   '.trim()  //'a' 去掉前后空格
+var s1 ='abc',s2='def'
+s1.concat(s2) //'abcdef' 拼接s1与s2两个字符串打印出新的字符串
+s1.slice(0,2) //'ab' 切片 切0-1的片
+s1.repalce('a','z')// 'zbc' 替换a与z
+
+上面的s1还是原来的s1
+
+
+
+
+Boolean()
+var b1 =true //布尔
+var b2 = new Boolean(true) //对象
+
+var f1 =fasle
+vaf f2 = new Boolean(false)
+
+if(f1) //f1 false
+if(f2) // f2 true 因为对象转换类型是true
+
+
+
+Object()
+
+window.setTimeout() //在指定时间后执行该函数
+
+
+var o1 = {}
+var o2 = new Object()
+o1 === o2 //false 因为内存图地址不相等，是两个不一样的对象
+
+隐藏属性，每个对象都有一个隐藏属性__proto__，指向共有属性
+__proto__ 值为共用属性值
+toString()
+valueOf()
+
+各种类型变为对象后都指向其类型的共有属性，其类型共有属性再指向对象共有属性
+
+比如数字类型共有属性：Number.prototype，Number.prototype里面有Object.prototype
+
+原型链：对象Object.protoype就是原型
+例:
+o1.__proto__ === Object.prototype
+n1.__proto__ === Number.prototype
+n1.__proto__.__proto__ === Objcet.prototype
+
+__proto__ 与 prototype的区别
+
+String.prototype 是String的公用属性的引用
+s.__proto__ 是String的公用属性的引用
+
+重点公式:
+var 对象 = new 构造函数()
+对象.__proto__ === 构造函数.prototype
+变型：
+函数.prototype.__proto__ === Object.prototype
+函数.__proto__ === Function.prototype
+Function.__proto__ === Function.prototype
+Function.prototype.__proto__ === Object.protoype
+
+
+私有属性 Window;window可以省略
+1 alert  //弹框
+2 prompt //用户填写  
+a = prompt() //填写东西赋值给a
+3 confirm //确认     
+a = confirm ('')//返回true或false
+4 consloe.log //控制台打印
+5 document   //DOM  W3C规定
+  history(浏览器)  BOM 
